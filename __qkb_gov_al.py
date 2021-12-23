@@ -7,7 +7,7 @@ if __name__ == '__main__':
 
     a = Handler()
 
-    final_data = a.Execute('BANKA KOMBTARE TREGTARE', '', '', '')
+    final_data = a.Execute('BANK', '', '', '')
     print(json.dumps(final_data, indent=4))
 
     elapsed_time = time.time() - start_time

@@ -59,6 +59,7 @@ class Handler(Extract, GetPages):
 
     def get_overview(self, link_name):
         company_name = link_name
+        company_name = company_name.split('/')[0].strip()
         url = 'https://qkb.gov.al/search/search-in-trade-register/search-for-subject/'
         tree = self.get_tree(url, headers=self.header, verify=False)
         hidden = tree.xpath('//input[@type="hidden"]/@value')[1:]
@@ -75,6 +76,7 @@ class Handler(Extract, GetPages):
                                           f'//div[@class="result-element"]//span[2]/text()[contains(., "{company_name}")]')
         except:
             return None
+        print(orga_name)
         if orga_name: company['vcard:organization-name'] = orga_name.strip()
         baseXpath = f'//div[@class="result-element"]//span[2]/text()[contains(., "{company_name}")]/../../..'
         company['isDomiciledIn'] = 'AL'
