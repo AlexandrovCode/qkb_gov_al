@@ -87,7 +87,7 @@ class Handler(Extract, GetPages):
                 'vat_tax_number': iden
             }
         service = self.get_by_xpath(tree, baseXpath + '/div//span[3]/text()')
-        if service:
+        if service and 'Ju lutem paraqituni prane' not in service:
             company['Service'] = {
                 'areaServed': '',
                 'serviceType': service
